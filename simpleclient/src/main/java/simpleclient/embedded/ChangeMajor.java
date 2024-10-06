@@ -1,4 +1,4 @@
-package embedded;
+package simpleclient.embedded;
 import java.sql.*;
 import simpledb.jdbc.embedded.EmbeddedDriver;
 
@@ -7,7 +7,7 @@ public class ChangeMajor {
       Driver d = new EmbeddedDriver();
       String url = "jdbc:simpledb:studentdb";
 
-      try (Connection conn = d.connect(url, null); 
+      try (Connection conn = d.connect(url, null);
             Statement stmt = conn.createStatement()) {
          String cmd = "update STUDENT "
                     + "set MajorId=30 "

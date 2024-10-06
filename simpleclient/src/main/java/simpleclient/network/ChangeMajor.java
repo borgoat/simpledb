@@ -1,4 +1,4 @@
-package network;
+package simpleclient.network;
 import java.sql.*;
 
 import simpledb.jdbc.network.NetworkDriver;
@@ -8,7 +8,7 @@ public class ChangeMajor {
       Driver d = new NetworkDriver();
       String url = "jdbc:simpledb://localhost";
 
-      try (Connection conn = d.connect(url, null); 
+      try (Connection conn = d.connect(url, null);
             Statement stmt = conn.createStatement()) {
          String cmd = "update STUDENT set MajorId=30 "
                + "where SName = 'amy'";

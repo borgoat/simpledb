@@ -1,3 +1,5 @@
+package derbyclient;
+
 import java.sql.*;
 import org.apache.derby.jdbc.ClientDataSource;
 
@@ -12,7 +14,7 @@ public class BadStudentMajor {
          conn.setAutoCommit(false);
          try (Statement stmt1 = conn.createStatement();
               Statement stmt2 = conn.createStatement(
-                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                      ResultSet.CONCUR_READ_ONLY);
                ResultSet rs1 = stmt1.executeQuery(
                      "select * from STUDENT");

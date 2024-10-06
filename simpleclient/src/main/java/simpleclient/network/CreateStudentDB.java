@@ -1,13 +1,15 @@
+package simpleclient.network;
 import java.sql.*;
-import org.apache.derby.jdbc.ClientDriver;
+
+import simpledb.jdbc.network.NetworkDriver;
 
 public class CreateStudentDB {
    public static void main(String[] args) {
-      String url = "jdbc:derby://localhost/studentdb;create=true";
-      Driver d = new ClientDriver();
+      Driver d = new NetworkDriver();
+      String url = "jdbc:simpledb://localhost";
+
       try (Connection conn = d.connect(url, null);
             Statement stmt = conn.createStatement()) {
-
          String s = "create table STUDENT(SId int, SName varchar(10), MajorId int, GradYear int)";
          stmt.executeUpdate(s);
          System.out.println("Table STUDENT created.");
@@ -33,7 +35,7 @@ public class CreateStudentDB {
          s = "insert into DEPT(DId, DName) values ";
          String[] deptvals = {"(10, 'compsci')",
                "(20, 'math')",
-               "(30, 'drama')"};
+         "(30, 'drama')"};
          for (int i=0; i<deptvals.length; i++)
             stmt.executeUpdate(s + deptvals[i]);
          System.out.println("DEPT records inserted.");
@@ -48,7 +50,7 @@ public class CreateStudentDB {
                "(32, 'calculus', 20)",
                "(42, 'algebra', 20)",
                "(52, 'acting', 30)",
-               "(62, 'elocution', 30)"};
+         "(62, 'elocution', 30)"};
          for (int i=0; i<coursevals.length; i++)
             stmt.executeUpdate(s + coursevals[i]);
          System.out.println("COURSE records inserted.");
@@ -62,7 +64,7 @@ public class CreateStudentDB {
                "(23, 12, 'turing', 2019)",
                "(33, 32, 'newton', 2019)",
                "(43, 32, 'einstein', 2017)",
-               "(53, 62, 'brando', 2018)"};
+         "(53, 62, 'brando', 2018)"};
          for (int i=0; i<sectvals.length; i++)
             stmt.executeUpdate(s + sectvals[i]);
          System.out.println("SECTION records inserted.");
@@ -77,7 +79,7 @@ public class CreateStudentDB {
                "(34, 2, 43, 'B+')",
                "(44, 4, 33, 'B' )",
                "(54, 4, 53, 'A' )",
-               "(64, 6, 53, 'A' )"};
+         "(64, 6, 53, 'A' )"};
          for (int i=0; i<enrollvals.length; i++)
             stmt.executeUpdate(s + enrollvals[i]);
          System.out.println("ENROLL records inserted.");

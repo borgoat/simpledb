@@ -1,3 +1,5 @@
+package derbyclient;
+
 import java.sql.*;
 import java.util.Scanner;
 
@@ -20,7 +22,7 @@ public class PreparedFindMajors {
       try ( Connection conn = ds.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(qry)) {
          pstmt.setString(1, major);
-         ResultSet rs = pstmt.executeQuery(); 
+         ResultSet rs = pstmt.executeQuery();
          System.out.println("Here are the " + major + " majors");
          System.out.println("Name\tGradYear");
          while (rs.next()) {

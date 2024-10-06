@@ -1,4 +1,4 @@
-package embedded;
+package simpleclient.embedded;
 import java.sql.*;
 
 import simpledb.jdbc.embedded.EmbeddedDriver;
@@ -13,7 +13,7 @@ public class StudentMajor {
       Driver d = new EmbeddedDriver();
       try (Connection conn = d.connect(url, null);
             Statement stmt = conn.createStatement()) {
-         
+
          System.out.println("Name\tMajor");
          ResultSet rs = stmt.executeQuery(qry);
          while (rs.next()) {

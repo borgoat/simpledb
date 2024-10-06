@@ -1,6 +1,8 @@
+package simpleclient.network;
 import java.sql.*;
 import java.util.Scanner;
-import org.apache.derby.jdbc.ClientDataSource;
+
+import simpledb.jdbc.network.NetworkDriver;
 
 public class FindMajors {
    public static void main(String[] args) {
@@ -8,20 +10,19 @@ public class FindMajors {
       Scanner sc = new Scanner(System.in);
       String major = sc.next();
       sc.close();
+      System.out.println("Here are the " + major + " majors");
+      System.out.println("Name\tGradYear");
+
+      String url = "jdbc:simpledb://localhost";
       String qry = "select sname, gradyear "
             + "from student, dept "
             + "where did = majorid "
             + "and dname = '" + major + "'";
 
-      ClientDataSource ds = new ClientDataSource();
-      ds.setServerName("localhost");
-      ds.setDatabaseName("studentdb");
-      try (Connection conn = ds.getConnection();
+      Driver d = new NetworkDriver();
+      try (Connection conn = d.connect(url, null);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(qry)) {
-
-         System.out.println("Here are the " + major + " majors");
-         System.out.println("Name\tGradYear");
          while (rs.next()) {
             String sname = rs.getString("sname");
             int gradyear = rs.getInt("gradyear");

@@ -1,3 +1,5 @@
+package derbyclient;
+
 import java.sql.*;
 import org.apache.derby.jdbc.ClientDriver;
 
@@ -24,7 +26,7 @@ public class StudentMajor {
          e.printStackTrace();
       }
    }
-   
+
    private static void printSchema(ResultSet rs) throws SQLException {
       System.out.println("\nHere is the schema:");
       ResultSetMetaData md = rs.getMetaData();
